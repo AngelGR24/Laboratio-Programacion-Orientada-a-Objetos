@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contactos</title>
+    <style>
+        body  { font-family: Arial, sans-serif; background: #1a1a2e;
+                color: #e0e0e0; display: flex; justify-content: center;
+                margin-top: 60px; }
+        .caja { background: #16213e; padding: 40px; border-radius: 12px;
+                border: 1px solid #4a90d9; width: 380px; }
+        h1    { color: #f0c040; text-align: center; margin-bottom: 24px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #4a90d9; }
+        th { background: #0f3460; }
+        a     { display: block; text-align: center; margin-top: 16px;
+                color: #4a90d9; }
+    </style>
+</head>
+<body>
+    <div class="caja">
+        <h1>Agenda de Contactos</h1>
+        <p th:if="${#lists.isEmpty(contactos)}">No hay contactos registrados.</p>
+        <table th:unless="${#lists.isEmpty(contactos)}">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="contacto : ${contactos}">
+                    <td th:text="${contacto.nombre}"></td>
+                    <td th:text="${contacto.apellido}"></td>
+                    <td th:text="${contacto.email}"></td>
+                    <td th:text="${contacto.telefono}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/nuevo">+ Agregar nuevo contacto</a>
+    </div>
+</body>
+</html>
